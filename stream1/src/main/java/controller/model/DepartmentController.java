@@ -1,12 +1,11 @@
 package controller.model;
 
-
 import model.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import service.DepartmentService;
+import service.DepartmentServiceImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -14,9 +13,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
-    private final DepartmentService service;
 
-    public DepartmentController(DepartmentService service) {
+    private final DepartmentServiceImpl service;
+
+    public DepartmentController(DepartmentServiceImpl service) {
         this.service = service;
     }
 

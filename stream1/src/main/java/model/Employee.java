@@ -51,4 +51,9 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
+
+    public int getDepartmentId() {
+
+        return 0;
+    }
 }

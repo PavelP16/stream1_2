@@ -1,52 +1,19 @@
 package service;
 
-
-import exceptions.EmployeeNotFoundException;
 import model.Employee;
-import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-@Service
-public class DepartmentService {
-    private final List<Employee> employees;
+public interface DepartmentService {
 
-    public DepartmentService(List<Employee> employees) {
-        this.employees = employees;
-    }
+    double sum(int departmentId);
 
-    public double sum(int departmentId) {
-        return employees.stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .mapToDouble(Employee::getSalary)
-                .sum();
-    }
+    Employee maxSalary(int departmentId);
 
-    public Employee maxSalary(int departmentId) {
-        return employees.stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .max(Comparator.comparingDouble(Employee::getSalary))
-                .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник с максимальной зарплатой не найден"));
-    }
+    Employee minSalary(int departmentId);
 
-    public Employee minSalary(int departmentId) {
-        return employees.stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .min(Comparator.comparingDouble(Employee::getSalary))
-                .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник с минимальной зарплатой не найден"));
-    }
+    List<Employee> findAllByDept(int departmentId);
 
-    public List<Employee> findAllByDept(int departmentId) {
-        return employees.stream()
-                .filter(e -> e.getDepartment() == departmentId)
-                .collect(Collectors.toList());
-    }
-
-    public Map<Integer, List<Employee>> groupDeDept() {
-        return employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment));
-    }
+    Map<Integer, List<Employee>> groupDeDept();
 }
