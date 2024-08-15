@@ -58,12 +58,4 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
 
-
-    @Override
-    public Employee getEmployeeWithMaxSalary(int departmentId) {
-        return employeeService.getAll().stream()
-                .filter(e -> e.getDepartmentId() == departmentId)
-                .max(comparingInt(Employee::getSalary))
-                .orElse(null);
-    }
 }
