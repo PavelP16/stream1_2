@@ -1,15 +1,20 @@
 package service;
 
 
+
+
 import exceptions.EmployeeAlreadyAddException;
 import exceptions.EmployeeNotFoundException;
 import exceptions.EmployeeStorageIsFullException;
 import model.Employee;
 import org.springframework.stereotype.Service;
+import validatiom.ParameterValidator;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+
 
 import static org.springframework.util.StringUtils.capitalize;
 
@@ -17,9 +22,21 @@ import static org.springframework.util.StringUtils.capitalize;
 public class EmployeeService {
 
     private static final int SIZE = 10;
+
+    private final ParameterValidator parameterValidator;
+
+    public EmployeeService(ParameterValidator parameterValidator) {
+        this.parameterValidator = parameterValidator;
+    }
+
     private final Map<String, Employee> employees = new HashMap<>();
 
-    public void addEmployee(String firstName, String lastName, double salary, int departmentId) { // Исправлено на departmentId
+    public void addEmployee(String firstName, String lastName, double salary, int departmentId) {
+
+        firstName = parameterValidator.checkAndCapitalize(firstName);
+        lastName = parameterValidator.checkAndCapitalize(lastName);
+
+
         if (employees.size() >= SIZE) {
             throw new EmployeeStorageIsFullException();
         }

@@ -1,5 +1,7 @@
 package model;
 
+
+
 import java.util.Objects;
 
 public class Employee {
@@ -8,11 +10,14 @@ public class Employee {
     private double salary;
     private int department;
 
+
+
     public Employee(String firstName, String lastName, double salary, int department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
         this.department = department;
+
     }
 
     public String getFirstName() {
