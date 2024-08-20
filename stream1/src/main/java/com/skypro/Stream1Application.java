@@ -1,4 +1,4 @@
-package com.skypro.stream1;
+package com.skypro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
